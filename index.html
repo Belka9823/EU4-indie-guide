@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Europa Universalis IV — База знаний</title>
+    <!-- Подключение файла стилей -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Шрифт Cinzel для средневекового стиля -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Шапка и навигация -->
+    <header class="navbar">
+        <div class="logo">👑 EU4 WIKI</div>
+        <nav class="nav-links">
+            <a href="#main" class="nav-btn active" onclick="showSection('main')">Главная</a>
+            <a href="#nations" class="nav-btn" onclick="showSection('nations')">Интересные страны</a>
+            <a href="#monuments" class="nav-btn" onclick="showSection('monuments')">Великие постройки</a>
+            <a href="#mechanics" class="nav-btn" onclick="showSection('mechanics')">Игровые механики</a>
+            <a href="#links" class="nav-btn" onclick="showSection('links')">Полезные ссылки</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <!-- РАЗДЕЛ 1: Главная -->
+        <section id="main" class="section active">
+            <div class="hero">
+                <h1>Europa Universalis IV</h1>
+                <p>Базовое руководство по одной из лучших глобальных стратегий от Paradox Interactive.</p>
+            </div>
+
+            <div class="card">
+                <h2>📜 Об игре</h2>
+                <p>Управляйте любой нацией мира с 1444 по 1821 год. Ведите войны, развивайте торговлю, совершайте великие географические открытия и стройте нерушимую империю.</p>
+            </div>
+
+            <div class="card">
+                <h2>⚖️ Калькулятор Агрессивного Расширения (AE)</h2>
+                <p>Рассчитайте примерный риск создания коалиции при захвате провинций:</p>
+                <div class="calculator-grid">
+                    <div>
+                        <label>Развитие провинций (Development):</label>
+                        <input type="number" id="ae-dev" value="30" min="1" oninput="calculateAE()">
+                    </div>
+                    <div>
+                        <label>Религия цели отличается?</label>
+                        <select id="ae-rel" onchange="calculateAE()">
+                            <option value="1">Да (Иноверцы / Христиане vs Мусульмане)</option>
+                            <option value="0.5">Нет (Одна религиозная группа)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="result-box" id="ae-result">
+                    Примерное Агрессивное Расширение: <strong>22.5 AE</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- РАЗДЕЛ 2: Интересные страны -->
+        <section id="nations" class="section">
+            <div class="hero">
+                <h1>Интересные страны</h1>
+                <p>Подборка наций с уникальным геймплеем, древом миссий и национальными идеями.</p>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="nation-search" placeholder="Поиск страны..." oninput="filterNations()">
+            </div>
+
+            <div class="grid" id="nations-grid">
+                <div class="card nation-card" data-name="османская империя османы">
+                    <span class="badge easy">Новичок</span>
+                    <h3>Османская Империя</h3>
+                    <p>Гегемон Ближнего Востока и Балкан. Огромная армия, уникальные механики янычар и пашей.</p>
+                </div>
+                <div class="card nation-card" data-name="франция">
+                    <span class="badge easy">Новичок</span>
+                    <h3>Франция</h3>
+                    <p>Военный гегемон Западной Европы с сильной армией, особыми вассалами и мощными национальными идеями.</p>
+                </div>
+                <div class="card nation-card" data-name="кастилия испания">
+                    <span class="badge easy">Новичок</span>
+                    <h3>Кастилия → Испания</h3>
+                    <p>Главная колониальная держава, золотые флоты, иберийская уния и завершение Реконкисты.</p>
+                </div>
+                <div class="card nation-card" data-name="московия россия">
+                    <span class="badge easy">Новичок</span>
+                    <h3>Московия → Россия</h3>
+                    <p>Объединение русских земель, безграничная экспансия в Сибирь, уникальные войска стрельцов.</p>
+                </div>
+                <div class="card nation-card" data-name="австрия схри">
+                    <span class="badge medium">Средний</span>
+                    <h3>Австрия</h3>
+                    <p>Император Священной Римской Империи. Мастер дипломатии, брачных союзов и личных уний.</p>
+                </div>
+                <div class="card nation-card" data-name="англия великобритания">
+                    <span class="badge medium">Средний</span>
+                    <h3>Англия → Великобритания</h3>
+                    <p>Владычица морей, уникальная механика парламента, Столетняя война и глобальная колонизация.</p>
+                </div>
+                <div class="card nation-card" data-name="польша речь посполитая">
+                    <span class="badge medium">Средний</span>
+                    <h3>Польша → Речь Посполитая</h3>
+                    <p>Уникальная выборная монархия, мощные крылатые гусары и уния с Великим Княжеством Литовским.</p>
+                </div>
+                <div class="card nation-card" data-name="бранденбург пруссия">
+                    <span class="badge medium">Средний</span>
+                    <h3>Бранденбург → Пруссия</h3>
+                    <p>Путь к созданию дисциплинированной армии-государства с высочайшим качеством войск в игре.</p>
+                </div>
+                <div class="card nation-card" data-name="византия">
+                    <span class="badge hard">Сложно</span>
+                    <h3>Византия</h3>
+                    <p>Сложнейший старт на грани уничтожения. Восстановите Римскую империю и верните Константинополь.</p>
+                </div>
+                <div class="card nation-card" data-name="мин китай">
+                    <span class="badge hard">Сложно</span>
+                    <h3>Великий Мин</h3>
+                    <p>Хранитель Небесного Мандата. Огромный стартовый доход, но высокий риск внутренних кризисов.</p>
+                </div>
+                <div class="card nation-card" data-name="ода япония">
+                    <span class="badge hard">Сложно</span>
+                    <h3>Ода → Япония</h3>
+                    <p>Маленький даймё с невероятными военными идеями. Объедините фрагментированную Японию мечом.</p>
+                </div>
+                <div class="card nation-card" data-name="ульм">
+                    <span class="badge easy">Новичок</span>
+                    <h3>Ульм</h3>
+                    <p>Легендарный свободный имперский город в центре СРИ. Маленькая территория, но бесконечный потенциал.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- РАЗДЕЛ 3: Великие постройки -->
+        <section id="monuments" class="section">
+            <div class="hero">
+                <h1>Великие постройки (Monuments)</h1>
+                <p>Уникальные архитектурные сооружения из DLC Leviathan, дающие глобальные бонусы империи.</p>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <span class="badge monument">Константинополь</span>
+                    <h3>Собор Святой Софии</h3>
+                    <p><strong>Бонусы III уровня:</strong> +1 Терпимость к истинной вере, +10% Престиж, +1 Ежемесячная легитимность.</p>
+                </div>
+                <div class="card">
+                    <span class="badge monument">Париж</span>
+                    <h3>Нотр-Дам де Пари</h3>
+                    <p><strong>Бонусы III уровня:</strong> +15% Авторитет церкви, -10% Стоимость технологий, +13.3% Одобрение сословий.</p>
+                </div>
+                <div class="card">
+                    <span class="badge monument">Гранада</span>
+                    <h3>Альгамбра</h3>
+                    <p><strong>Бонусы III уровня:</strong> +5% Дисциплина армии, +1 Дипломатическое отношение, -5% Стоимость административных технологий.</p>
+                </div>
+                <div class="card">
+                    <span class="badge monument">Пекин</span>
+                    <h3>Запретный город</h3>
+                    <p><strong>Бонусы III уровня:</strong> +1 Небесный Мандат, -10% Стоимость советников, +1 Ежегодная легитимность.</p>
+                </div>
+                <div class="card">
+                    <span class="badge monument">Агра</span>
+                    <h3>Тадж-Махал</h3>
+                    <p><strong>Бонусы III уровня:</strong> +10% Доход от налогов, -10% Стоимость провинций при аннексии, +1 Легитимность.</p>
+                </div>
+                <div class="card">
+                    <span class="badge monument">Каир</span>
+                    <h3>Пирамиды Гизы</h3>
+                    <p><strong>Бонусы III уровня:</strong> +10% Престиж, +10% Скорость восстановления рекрутов, -10% Потребление припасов.</p>
+                </div>
+                <div class="card">
+                    <span class="badge monument">Киото</span>
+                    <h3>Замок Нидзё</h3>
+                    <p><strong>Бонусы III уровня:</strong> +10% Дисциплина самураев, -10% Стоимость национализации провинций.</p>
+                </div>
+                <div class="card">
+                    <span class="badge monument">Афины</span>
+                    <h3>Парфенон</h3>
+                    <p><strong>Бонусы III уровня:</strong> -10% Стоимость идей, +0.5 Ежегодная легитимность, +10% Распространение институтов.</p>
+                </div>
+                <div class="card">
+                    <span class="badge monument">Солсбери</span>
+                    <h3>Стоунхендж</h3>
+                    <p><strong>Бонусы III уровня:</strong> +1 Терпимость к язычеству, +10% Скорость распространения институтов.</p>
+                </div>
+                <div class="card">
+                    <span class="badge monument">Сиемреап</span>
+                    <h3>Ангкор-Ват</h3>
+                    <p><strong>Бонусы III уровня:</strong> +1 Терпимость к истинной вере, +15% Эффективность религиозного единства.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- РАЗДЕЛ 4: Игровые механики -->
+        <section id="mechanics" class="section">
+            <div class="hero">
+                <h1>Игровые механики</h1>
+                <p>Калькулятор Дисциплины и основы экономической системы.</p>
+            </div>
+
+            <div class="card">
+                <h2>⚔️ Калькулятор Дисциплины армии</h2>
+                <p>Отметьте ваши бонусы, чтобы узнать итоговую Дисциплину:</p>
+
+                <div class="checkbox-group">
+                    <label><input type="checkbox" id="disc-base" checked disabled> Базовая дисциплина (100%)</label>
+                    <label><input type="checkbox" id="disc-advisor" onchange="calcDiscipline()"> Советник Комендант (+5%)</label>
+                    <label><input type="checkbox" id="disc-quality" onchange="calcDiscipline()"> Идеи Качества (+5%)</label>
+                    <label><input type="checkbox" id="disc-weapon" onchange="calcDiscipline()"> Политика «Качественное оружие» (+5%)</label>
+                    <label><input type="checkbox" id="disc-monarch" onchange="calcDiscipline()"> Черта правителя «Военный гений» (+5%)</label>
+                </div>
+
+                <div class="result-box" id="disc-result">
+                    Итоговая Дисциплина: <strong>100%</strong>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>💰 Торговля в EU4</h2>
+                <p>Торговля работает по принципу течения рек: торговая стоимость перемещается из начальных узлов в конечные (Севилья, Ла-Манш, Венеция). Перенаправляйте торговцев купеческими идеями!</p>
+            </div>
+        </section>
+
+        <!-- РАЗДЕЛ 5: Полезные ссылки -->
+        <section id="links" class="section">
+            <div class="hero">
+                <h1>Полезные ссылки</h1>
+                <p>Важные ресурсы для изучения игры и модификаций.</p>
+            </div>
+
+            <div class="card">
+                <h2>🌐 Официальные и фан-ресурсы</h2>
+                <ul class="links-list">
+                    <li><a href="https://eu4.paradoxwikis.com/" target="_blank">Официальная EU4 Wiki</a> — База данных по всем аспектам игры.</li>
+                    <li><a href="https://store.steampowered.com/app/236850/Europa_Universalis_IV/" target="_blank">Страница игры в Steam</a> — Покупка и дополнения (DLC).</li>
+                    <li><a href="https://reddit.com/r/eu4" target="_blank">Сообщество Reddit (/r/eu4)</a> — Обсуждения, мемы, гайды от игроков.</li>
+                    <li><a href="https://steamcommunity.com/app/236850/workshop/" target="_blank">Steam Workshop Mods</a> — Лучшие моды (Anbennar, MEIOU and Taxes).</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Подключение файла скриптов -->
+    <script src="script.js"></script>
+</body>
+</html>
