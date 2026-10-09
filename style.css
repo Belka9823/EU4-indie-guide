@@ -251,6 +251,7 @@ input[type="number"], select, input[type="text"] {
 /* Подвал сайта (Footer) */
 .footer {
     text-align: center;
+    width: 100%;
     padding: 25px 20px;
     margin-top: 50px;
     border-top: 2px solid var(--border-color);
@@ -260,5 +261,6 @@ input[type="number"], select, input[type="text"] {
 }
 
 .footer p {
+    text-align: center;
     margin-bottom: 5px;
 }
